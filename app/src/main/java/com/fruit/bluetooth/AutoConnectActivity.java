@@ -98,7 +98,7 @@ public class AutoConnectActivity extends Activity {
     } else {
       if (!bt.isServiceAvailable()) {
         bt.setupService();
-        bt.startService(BluetoothState.DEVICE_OTHER);
+        bt.startService(BluetoothState.DEVICE_ANDROID);
         setup();
       }
     }
@@ -128,6 +128,6 @@ public class AutoConnectActivity extends Activity {
       }
     });
 
-    bt.autoConnect("B4:0B:44:35:EB:0A");
+    bt.autoConnect("A57");
   }
 }

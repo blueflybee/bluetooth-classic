@@ -20,7 +20,6 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +35,6 @@ import com.fruit.library.bluetooth.BluetoothState;
 import com.fruit.library.bluetooth.DeviceList;
 
 public class TerminalActivity extends Activity {
-
   BluetoothSPP bt;
 
   TextView textStatus, textRead;
@@ -97,15 +95,15 @@ public class TerminalActivity extends Activity {
     int id = item.getItemId();
     if (id == R.id.menu_android_connect) {
       bt.setDeviceTarget(BluetoothState.DEVICE_ANDROID);
-            /*
-            if(bt.getServiceState() == BluetoothState.STATE_CONNECTED)
+      /*
+			if(bt.getServiceState() == BluetoothState.STATE_CONNECTED)
     			bt.disconnect();*/
       Intent intent = new Intent(getApplicationContext(), DeviceList.class);
       startActivityForResult(intent, BluetoothState.REQUEST_CONNECT_DEVICE);
     } else if (id == R.id.menu_device_connect) {
       bt.setDeviceTarget(BluetoothState.DEVICE_OTHER);
-      /*
-      if(bt.getServiceState() == BluetoothState.STATE_CONNECTED)
+			/*
+			if(bt.getServiceState() == BluetoothState.STATE_CONNECTED)
     			bt.disconnect();*/
       Intent intent = new Intent(getApplicationContext(), DeviceList.class);
       startActivityForResult(intent, BluetoothState.REQUEST_CONNECT_DEVICE);
@@ -132,8 +130,6 @@ public class TerminalActivity extends Activity {
         bt.startService(BluetoothState.DEVICE_ANDROID);
         setup();
       }
-
-      linkOneBlueTooth();
     }
   }
 
@@ -166,14 +162,4 @@ public class TerminalActivity extends Activity {
       }
     }
   }
-
-  private void linkOneBlueTooth() {
-    bt.setDeviceTarget(BluetoothState.DEVICE_OTHER); //表示为：非Android系统的蓝牙通信设备 //等待蓝牙设备空闲后再开始连接
-    new Handler().postDelayed(new Runnable() {
-      public void run() {
-        bt.connect("B4:0B:44:35:EB:0A"); //这里的mac为你自己蓝牙的mac
-      }
-    }, 700); //设置至少大于500的延迟。
-  }
-
 }
