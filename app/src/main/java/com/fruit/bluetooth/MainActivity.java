@@ -33,7 +33,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
   public void onClick(View v) {
     int id = v.getId();
-    Intent intent = null;
+    Intent intent;
     switch (id) {
       case R.id.btnSimple:
         intent = new Intent(getApplicationContext(), SimpleActivity.class);
